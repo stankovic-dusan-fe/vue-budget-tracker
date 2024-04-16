@@ -8,7 +8,7 @@
         </div>
         <div class="flex justify-center items-center">
           <img
-            class="w-full"
+            class="w-[90%]"
             src="https://apexcharts.com/wp-content/uploads/2018/05/area-chart-spline.svg"
             alt=""
           />

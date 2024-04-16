@@ -28,7 +28,5 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
 import { HomeIcon, ChartBarIcon, PlusIcon, BellIcon, UserIcon } from "@heroicons/vue/24/outline";
 </script>
