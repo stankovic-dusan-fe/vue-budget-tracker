@@ -1,22 +1,39 @@
 <template>
   <div class="p-8">
-    <div class="flex items-center gap-2">
-      <RouterLink to="/"><ArrowLeftIcon class="h-6 w-6 text-[#1B1C1D]" /></RouterLink>
+    <!-- <div class="flex items-center gap-2">
+      <BaseBackBtn />
       <h3>Add Record</h3>
     </div>
     <div class="w-full h-[40px] grid grid-cols-2 bg-[#F3F3F3] rounded-lg my-5">
-      <button class="text-sm">Income</button>
-      <button class="text-sm bg-[#1B1C1D] text-white rounded-lg">Expenses</button>
-    </div>
-    <!-- <KeepAlive>
-      <component :is="activeComponent" />
-    </KeepAlive> -->
-    <BaseForm />
+      <button
+        @click="selectedTab = IncomeRecord"
+        class="text-sm rounded-lg"
+      >
+        Income
+      </button>
+      <button
+        @click="selectedTab = ExpenseRecord"
+        class="text-sm rounded-lg"
+      >
+        Expenses
+      </button>
+    </div> -->
+
+    <component :is="selectedTab" />
   </div>
 </template>
 
 <script setup>
-import { ArrowLeftIcon } from "@heroicons/vue/24/outline";
+import { ref } from "vue";
 
-import BaseForm from "@/components/ui/BaseForm.vue";
+import BaseBackBtn from "@/components/ui/BaseBackBtn.vue";
+
+import IncomeRecord from "@/components/IncomeRecord.vue";
+import ExpenseRecord from "@/components/ExpenseRecord.vue";
+
+let selectedTab = ref(ExpenseRecord);
+
+function setSelectedTab(tab) {
+  selectedTab = tab;
+}
 </script>

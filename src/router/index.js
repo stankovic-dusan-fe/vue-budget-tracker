@@ -6,7 +6,7 @@ import TransactionView from "@/views/TransactionView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  rout
+  // linkActiveClass: "first:text-blue-500",
   routes: [
     {
       path: "/",
