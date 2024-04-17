@@ -1,5 +1,4 @@
 <template>
-  <h3 class="my-5">This is IncomeRecord component</h3>
   <BaseForm />
 </template>
 

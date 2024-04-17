@@ -2,10 +2,7 @@
   <PageLayout>
     <template v-slot:header>
       <div class="w-full min-h-[330px] bg-white p-8 rounded-b-xl drop-shadow-lg">
-        <div class="flex items-center gap-2 mb-5">
-          <BaseBackBtn />
-          <h3>Transactions</h3>
-        </div>
+        <BaseBackBtn btnTitle="Transaction" />
         <div class="flex justify-center items-center">
           <img
             class="w-[90%]"

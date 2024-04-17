@@ -1,39 +1,35 @@
 <template>
   <div class="p-8">
-    <!-- <div class="flex items-center gap-2">
-      <BaseBackBtn />
-      <h3>Add Record</h3>
-    </div>
+    <BaseBackBtn btnTitle="Add Record" />
     <div class="w-full h-[40px] grid grid-cols-2 bg-[#F3F3F3] rounded-lg my-5">
       <button
-        @click="selectedTab = IncomeRecord"
+        @click="selectedComponent = IncomeRecord"
         class="text-sm rounded-lg"
+        :class="selectedComponent === IncomeRecord ? 'bg-[#1B1C1D] text-white' : ''"
       >
         Income
       </button>
       <button
-        @click="selectedTab = ExpenseRecord"
+        @click="selectedComponent = ExpenseRecord"
         class="text-sm rounded-lg"
+        :class="selectedComponent === ExpenseRecord ? 'bg-[#1B1C1D] text-white' : ''"
       >
         Expenses
       </button>
-    </div> -->
-
-    <component :is="selectedTab" />
+    </div>
+    <KeepAlive>
+      <component :is="selectedComponent" />
+    </KeepAlive>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { shallowRef } from "vue";
 
 import BaseBackBtn from "@/components/ui/BaseBackBtn.vue";
 
 import IncomeRecord from "@/components/IncomeRecord.vue";
 import ExpenseRecord from "@/components/ExpenseRecord.vue";
 
-let selectedTab = ref(ExpenseRecord);
-
-function setSelectedTab(tab) {
-  selectedTab = tab;
-}
+let selectedComponent = shallowRef(IncomeRecord);
 </script>
