@@ -16,7 +16,7 @@
           </div>
           <div class="w-full text-white">
             <p>Balance</p>
-            <h1>$14,564</h1>
+            <h1>${{ totalBalance }}</h1>
           </div>
           <div class="grid grid-cols-2 gap-8">
             <div class="py-4 bg-white rounded-lg flex justify-center items-center gap-4">
@@ -25,7 +25,7 @@
               </div>
               <div class="flex flex-col">
                 <p class="text-[#50B554] text-sm font-semibold">Income</p>
-                <h3>$2653</h3>
+                <h3>${{ totalIncome }}</h3>
               </div>
             </div>
             <div class="py-4 bg-white rounded-lg flex justify-center items-center gap-4">
@@ -34,7 +34,7 @@
               </div>
               <div class="flex flex-col">
                 <p class="text-[#FF0B0B] text-sm font-semibold">Expense</p>
-                <h3>$4561</h3>
+                <h3>${{ totalExpense }}</h3>
               </div>
             </div>
           </div>
@@ -45,9 +45,15 @@
       <h3>Recent Transactions</h3>
       <div
         class="w-full h-auto"
-        v-for="i in 5"
+        v-for="transaction in transactions.slice(0, 5)"
       >
-        <TransactionCard />
+        <TransactionCard
+          :type="transaction.type"
+          :notes="transaction.notes"
+          :category="transaction.category"
+          :amount="transaction.amount"
+          :date="transaction.date"
+        />
       </div>
     </template>
   </PageLayout>
@@ -58,4 +64,14 @@ import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";
 
 import PageLayout from "@/components/layout/PageLayout.vue";
 import TransactionCard from "@/components/TransactionCard.vue";
+
+import { useTransactionStore } from "@/stores/storeTransactions.js";
+
+const storeTransactions = useTransactionStore();
+
+const transactions = storeTransactions.transactions;
+
+const totalBalance = storeTransactions.totalBalance.toLocaleString();
+const totalIncome = storeTransactions.totalIncome;
+const totalExpense = storeTransactions.totalExpense;
 </script>

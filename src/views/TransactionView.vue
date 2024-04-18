@@ -16,9 +16,15 @@
       <h3>All Transactions</h3>
       <div
         class="w-full h-auto"
-        v-for="i in 10"
+        v-for="transaction in transactions"
       >
-        <TransactionCard />
+        <TransactionCard
+          :type="transaction.type"
+          :notes="transaction.notes"
+          :category="transaction.category"
+          :amount="transaction.amount"
+          :date="transaction.date"
+        />
       </div>
     </template>
   </PageLayout>
@@ -29,4 +35,10 @@ import BaseBackBtn from "@/components/ui/BaseBackBtn.vue";
 
 import PageLayout from "@/components/layout/PageLayout.vue";
 import TransactionCard from "@/components/TransactionCard.vue";
+
+import { useTransactionStore } from "@/stores/storeTransactions.js";
+
+const storeTransactions = useTransactionStore();
+
+const transactions = storeTransactions.transactions;
 </script>
