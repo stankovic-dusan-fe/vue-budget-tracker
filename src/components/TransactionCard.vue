@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="w-full h-14 flex justify-end">
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex flex-col justify-center items-end">
         <h4>${{ type === "income" ? amount : `-${amount}` }}</h4>
         <span>{{ date }}</span>
       </div>

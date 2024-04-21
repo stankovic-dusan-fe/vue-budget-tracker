@@ -14,7 +14,7 @@ const navItems = [
   { icon: "Home", route: "/" },
   { icon: "Chart", route: "/transactions" },
   { icon: "Plus", route: "/addrecord" },
-  { icon: "Notif", route: "/" },
-  { icon: "User", route: "/" },
+  { icon: "Notif", route: "/changelogs" },
+  { icon: "User", route: "/user" },
 ];
 </script>

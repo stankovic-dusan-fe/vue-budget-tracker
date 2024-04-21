@@ -2,7 +2,7 @@
   <PageLayout>
     <template v-slot:header>
       <div class="bg-[#1B1C1D] p-8 rounded-b-xl">
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-4">
           <div class="w-full flex justify-start items-center gap-4">
             <img
               class="rounded-full w-[50px]"
@@ -45,7 +45,7 @@
       <h3>Recent Transactions</h3>
       <div
         class="w-full h-auto"
-        v-for="transaction in transactions.slice(0, 5)"
+        v-for="transaction in transactions"
       >
         <TransactionCard
           :type="transaction.type"
@@ -69,9 +69,9 @@ import { useTransactionStore } from "@/stores/storeTransactions.js";
 
 const storeTransactions = useTransactionStore();
 
-const transactions = storeTransactions.transactions;
-
 const totalBalance = storeTransactions.totalBalance.toLocaleString();
 const totalIncome = storeTransactions.totalIncome;
 const totalExpense = storeTransactions.totalExpense;
+
+const transactions = storeTransactions.transactions;
 </script>

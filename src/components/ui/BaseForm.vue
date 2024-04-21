@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white rounded-xl drop-shadow-lg px-6 py-8">
-    <form class="h-full flex flex-col gap-6">
+    <form class="h-full flex flex-col gap-4">
       <div class="flex flex-col gap-2">
         <h4>Amount</h4>
         <input
@@ -14,10 +14,11 @@
         <h4>Category</h4>
         <div class="h-full text-sm bg-transparent border-2 border-[#EEEEEE] rounded-xl py-4 px-3">
           <select
-            class="w-full text-[#A0A8B3] text-sm font-normal bg-transparent outline-none"
+            class="w-full text-black text-sm font-normal bg-transparent outline-none"
             v-model="transaction.category"
           >
             <option
+              class="text-red-500"
               disabled
               selected
               value=""
@@ -35,11 +36,11 @@
           </select>
         </div>
         <div
-          v-if="transaction.category === 'other'"
+          v-if="transaction.category === 'Other'"
           class="flex flex-col gap-2"
         >
           <input
-            v-model="transaction.other"
+            v-model="transaction.category"
             class="h-full text-sm bg-transparent border-2 border-[#EEEEEE] rounded-xl p-4"
             type="text"
             placeholder="Enter Category"
@@ -67,10 +68,11 @@
         />
       </div>
       <div class="flex flex-col gap-2">
-        <!-- <slot></slot> -->
         <button
-          @click.prevent="$emit('send-transaction', transaction)"
-          class="text-sm text-white border-2 bg-[#1B1C1D] border-[#EEEEEE] rounded-xl p-4"
+          :disabled="transaction.amount === 0 || transaction.category === '' || transaction.date === '' || transaction.notes === ''"
+          @click="$emit('send-transaction', transaction), (transaction.amount = 0), (transaction.category = ''), (transaction.date = ''), (transaction.notes = '')"
+          :class="transaction.amount === 0 || transaction.category === '' || transaction.date === '' || transaction.notes === '' ? 'cursor-not-allowed border-[#D1D1D1] bg-[#D1D1D1] text-white' : ''"
+          class="text-sm text-white border-2 bg-[#1B1C1D] border-none rounded-xl p-4"
         >
           Add Record
         </button>
@@ -80,14 +82,17 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 
 const transaction = reactive({
   id: "",
   type: "",
-  amount: 0,
+  amount: "",
   date: "",
   category: "",
   notes: "",
 });
+
+// napisati validaciju za ovaj gore input
+// napisati functio sa reset ove forme vec je sad napisano samo napraviti poseban computed
 </script>
