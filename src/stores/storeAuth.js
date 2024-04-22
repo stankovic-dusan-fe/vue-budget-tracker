@@ -2,6 +2,8 @@ import { defineStore } from "pinia";
 import { auth } from "@/firebase/index";
 import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 
+import { useTransactionStore } from "@/stores/storeTransactions.js";
+
 export const useAuthStore = defineStore("authStore", {
   state: () => {
     return {
@@ -10,17 +12,19 @@ export const useAuthStore = defineStore("authStore", {
   },
   actions: {
     init() {
+      const storeTransactions = useTransactionStore();
+
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log("User looged in:", user);
           this.user.id = user.uid;
           this.user.name = user.displayName;
           this.user.email = user.email;
-          console.log(this.user);
-          this.router.push("/");
+          this.user.avatar = user.photoURL;
+          this.router.push("/home");
+          storeTransactions.init();
         } else {
           this.user = {};
-          console.log("User logged out :", user);
+
           this.router.replace("/auth");
         }
       });
@@ -29,19 +33,12 @@ export const useAuthStore = defineStore("authStore", {
       const provider = new GoogleAuthProvider();
 
       signInWithPopup(auth, provider)
-        .then((result) => {
-          console.log("User successfuly signed in");
-          console.log(result);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        .then((result) => {})
+        .catch((error) => {});
     },
     googleSignOut() {
       signOut(auth)
-        .then(() => {
-          console.log("User signed out");
-        })
+        .then(() => {})
         .catch((error) => {
           console.log(error);
         });

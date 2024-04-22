@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import AuthView from "@/views/AuthView.vue";
+import DashboardView from "@/views/core/DashboardView.vue";
 import HomeView from "@/views/HomeView.vue";
 import AddRecordView from "@/views/AddRecordView.vue";
 import TransactionView from "@/views/TransactionView.vue";
@@ -17,28 +18,35 @@ const router = createRouter({
     },
     {
       path: "/",
-      name: "home",
-      component: HomeView,
-    },
-    {
-      path: "/transactions",
-      name: "transactions",
-      component: TransactionView,
-    },
-    {
-      path: "/addrecord",
-      name: "addRecord",
-      component: AddRecordView,
-    },
-    {
-      path: "/changelogs",
-      name: "changeLogs",
-      component: ChangeLogsView,
-    },
-    {
-      path: "/user",
-      name: "user",
-      component: UserView,
+      name: "dashboard",
+      component: DashboardView,
+      children: [
+        {
+          path: "/home",
+          name: "home",
+          component: HomeView,
+        },
+        {
+          path: "/transactions",
+          name: "transactions",
+          component: TransactionView,
+        },
+        {
+          path: "/addrecord",
+          name: "addRecord",
+          component: AddRecordView,
+        },
+        {
+          path: "/changelogs",
+          name: "changeLogs",
+          component: ChangeLogsView,
+        },
+        {
+          path: "/user",
+          name: "user",
+          component: UserView,
+        },
+      ],
     },
   ],
 });

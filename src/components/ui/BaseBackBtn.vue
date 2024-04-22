@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    to="/"
+    to="/home"
     class="flex items-center gap-2"
     ><ArrowLeftIcon class="h-6 w-6 text-[#1B1C1D]" />
     <h3>{{ btnTitle }}</h3></RouterLink

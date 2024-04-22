@@ -16,14 +16,15 @@
       <h3>All Transactions</h3>
       <div
         class="w-full h-auto"
-        v-for="transaction in transactions"
+        v-for="transaction in storeTransactions.transactions"
       >
         <TransactionCard
+          :key="transaction.id"
           :type="transaction.type"
           :notes="transaction.notes"
-          :category="transaction.category"
           :amount="transaction.amount"
           :date="transaction.date"
+          :category="transaction.category"
         />
       </div>
     </template>
@@ -39,6 +40,4 @@ import TransactionCard from "@/components/TransactionCard.vue";
 import { useTransactionStore } from "@/stores/storeTransactions.js";
 
 const storeTransactions = useTransactionStore();
-
-const transactions = storeTransactions.transactions;
 </script>

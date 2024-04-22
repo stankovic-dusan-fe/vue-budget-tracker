@@ -40,7 +40,7 @@
           class="flex flex-col gap-2"
         >
           <input
-            v-model="transaction.category"
+            v-model="transaction.categoryOther"
             class="h-full text-sm bg-transparent border-2 border-[#EEEEEE] rounded-xl p-4"
             type="text"
             placeholder="Enter Category"
@@ -90,6 +90,7 @@ const transaction = reactive({
   amount: "",
   date: "",
   category: "",
+  categoryOther: "",
   notes: "",
 });
 

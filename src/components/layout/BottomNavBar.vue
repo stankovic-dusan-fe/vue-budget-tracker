@@ -11,7 +11,7 @@
 import BaseNavBarBtn from "@/components/ui/BaseNavBarBtn.vue";
 
 const navItems = [
-  { icon: "Home", route: "/" },
+  { icon: "Home", route: "/home" },
   { icon: "Chart", route: "/transactions" },
   { icon: "Plus", route: "/addrecord" },
   { icon: "Notif", route: "/changelogs" },

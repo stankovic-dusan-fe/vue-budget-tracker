@@ -6,11 +6,11 @@
           <div class="w-full flex justify-start items-center gap-4">
             <img
               class="rounded-full w-[50px]"
-              src="https://randomuser.me/api/portraits/men/85.jpg"
+              :src="storeAuth.user.avatar"
               alt=""
             />
             <div class="text-white">
-              <h3>Hello Dusan</h3>
+              <h3>Hello {{ storeAuth.user.name }}</h3>
               <p class="text-xs">Welcome Back!</p>
             </div>
           </div>
@@ -41,18 +41,20 @@
         </div>
       </div>
     </template>
+
     <template v-slot:content>
       <h3>Recent Transactions</h3>
       <div
         class="w-full h-auto"
-        v-for="transaction in transactions"
+        v-for="transaction in storeTransactions.transactions"
       >
         <TransactionCard
+          :key="transaction.id"
           :type="transaction.type"
           :notes="transaction.notes"
-          :category="transaction.category"
           :amount="transaction.amount"
           :date="transaction.date"
+          :category="transaction.category"
         />
       </div>
     </template>
@@ -66,12 +68,12 @@ import PageLayout from "@/components/layout/PageLayout.vue";
 import TransactionCard from "@/components/TransactionCard.vue";
 
 import { useTransactionStore } from "@/stores/storeTransactions.js";
+import { useAuthStore } from "@/stores/storeAuth";
 
 const storeTransactions = useTransactionStore();
+const storeAuth = useAuthStore();
 
 const totalBalance = storeTransactions.totalBalance.toLocaleString();
 const totalIncome = storeTransactions.totalIncome;
 const totalExpense = storeTransactions.totalExpense;
-
-const transactions = storeTransactions.transactions;
 </script>
