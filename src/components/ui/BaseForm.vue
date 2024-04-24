@@ -40,7 +40,7 @@
           class="flex flex-col gap-2"
         >
           <input
-            v-model="transaction.categoryOther"
+            v-model="transaction.category"
             class="h-full text-sm bg-transparent border-2 border-[#EEEEEE] rounded-xl p-4"
             type="text"
             placeholder="Enter Category"
@@ -69,7 +69,7 @@
       </div>
       <div class="flex flex-col gap-2">
         <button
-          :disabled="transaction.amount === 0 || transaction.category === '' || transaction.date === '' || transaction.notes === ''"
+          :disabled="isDisabled"
           @click="$emit('send-transaction', transaction), (transaction.amount = 0), (transaction.category = ''), (transaction.date = ''), (transaction.notes = '')"
           :class="transaction.amount === 0 || transaction.category === '' || transaction.date === '' || transaction.notes === '' ? 'cursor-not-allowed border-[#D1D1D1] bg-[#D1D1D1] text-white' : ''"
           class="text-sm text-white border-2 bg-[#1B1C1D] border-none rounded-xl p-4"
@@ -93,6 +93,10 @@ const transaction = reactive({
   categoryOther: "",
   notes: "",
 });
+
+// const isDisabled = computed(() => {
+//   return transaction.amount === 0 || transaction.category === "" || transaction.date === "" || transaction.notes === "";
+// });
 
 // napisati validaciju za ovaj gore input
 // napisati functio sa reset ove forme vec je sad napisano samo napraviti poseban computed

@@ -11,7 +11,5 @@ const storeTransactions = useTransactionStore();
 
 function addTransaction(transaction) {
   storeTransactions.addTransaction(transaction, "expense");
-  storeTransactions.totalExpense += transaction.amount;
-  storeTransactions.totalBalance -= transaction.amount;
 }
 </script>

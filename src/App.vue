@@ -14,7 +14,6 @@ import { useAuthStore } from "./stores/storeAuth";
 const storeAuth = useAuthStore();
 
 onMounted(() => {
-  console.log(1);
   storeAuth.init();
 });
 </script>

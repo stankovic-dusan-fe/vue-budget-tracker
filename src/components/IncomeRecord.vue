@@ -10,7 +10,6 @@ import { useTransactionStore } from "@/stores/storeTransactions.js";
 const storeTransactions = useTransactionStore();
 
 function addTransaction(transaction) {
-  console.log(1);
   storeTransactions.addTransaction(transaction, "income");
 }
 </script>
