@@ -1,18 +1,18 @@
 <template>
   <RouterLink
-    class="flex justify-center items-center first:text-red-500"
+    class="flex justify-center items-center text-[#7A7B7B]"
     :to="route"
   >
     <div
       v-if="iconComponent === PlusIcon"
-      class="w-8 h-8 bg-white rounded-full flex justify-center items-center"
+      class="w-8 h-8 bg-white rounded-full flex justify-center items-center text-[#1B1C1D]"
     >
-      <iconComponent class="h-6 w-6 text-[#7F8080]" />
+      <iconComponent class="h-6 w-6" />
     </div>
     <component
       :is="iconComponent"
       v-else
-      class="h-6 w-6 text-[#7F8080]"
+      class="h-6 w-6"
     />
   </RouterLink>
 </template>

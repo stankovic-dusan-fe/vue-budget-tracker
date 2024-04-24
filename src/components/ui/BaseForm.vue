@@ -70,8 +70,8 @@
       <div class="flex flex-col gap-2">
         <button
           :disabled="isDisabled"
-          @click="$emit('send-transaction', transaction), (transaction.amount = 0), (transaction.category = ''), (transaction.date = ''), (transaction.notes = '')"
-          :class="transaction.amount === 0 || transaction.category === '' || transaction.date === '' || transaction.notes === '' ? 'cursor-not-allowed border-[#D1D1D1] bg-[#D1D1D1] text-white' : ''"
+          @click="$emit('send-transaction', transaction), resetForm()"
+          :class="isDisabled ? 'cursor-not-allowed border-[#D1D1D1] bg-[#D1D1D1] text-white' : ''"
           class="text-sm text-white border-2 bg-[#1B1C1D] border-none rounded-xl p-4"
         >
           Add Record
@@ -82,22 +82,25 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 
 const transaction = reactive({
   id: "",
   type: "",
-  amount: "",
+  amount: 0,
   date: "",
   category: "",
-  categoryOther: "",
   notes: "",
 });
 
-// const isDisabled = computed(() => {
-//   return transaction.amount === 0 || transaction.category === "" || transaction.date === "" || transaction.notes === "";
-// });
+const isDisabled = computed(() => {
+  return transaction.amount <= 0 || transaction.category === "" || transaction.date === "" || transaction.notes === "";
+});
 
-// napisati validaciju za ovaj gore input
-// napisati functio sa reset ove forme vec je sad napisano samo napraviti poseban computed
+function resetForm() {
+  this.transaction.amount = 0;
+  this.transaction.category = "";
+  this.transaction.date = "";
+  this.transaction.notes = "";
+}
 </script>

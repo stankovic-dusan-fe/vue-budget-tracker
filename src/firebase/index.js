@@ -2,8 +2,10 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
+const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDTZGi7rJs1B2vpURdOvVvfOVqLhYAV6xY",
+  apiKey: apiKey,
   authDomain: "vue-budget-tracker-10b1e.firebaseapp.com",
   projectId: "vue-budget-tracker-10b1e",
   storageBucket: "vue-budget-tracker-10b1e.appspot.com",
