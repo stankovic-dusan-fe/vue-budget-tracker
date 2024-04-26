@@ -13,7 +13,6 @@ export const useAuthStore = defineStore("authStore", {
   actions: {
     init() {
       const storeTransactions = useTransactionStore();
-
       onAuthStateChanged(auth, (user) => {
         if (user) {
           this.user.id = user.uid;
@@ -24,7 +23,6 @@ export const useAuthStore = defineStore("authStore", {
           storeTransactions.init();
         } else {
           this.user = {};
-
           this.router.replace("/auth");
         }
       });

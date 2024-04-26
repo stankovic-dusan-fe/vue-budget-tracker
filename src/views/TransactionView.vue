@@ -1,14 +1,10 @@
 <template>
   <PageLayout>
     <template v-slot:header>
-      <div class="w-full min-h-[330px] bg-white p-8 rounded-b-xl drop-shadow-lg">
+      <div class="w-full h-[330px] bg-white p-8 rounded-b-xl drop-shadow-lg">
         <BaseBackBtn btnTitle="Transaction" />
-        <div class="flex justify-center items-center">
-          <img
-            class="w-[90%]"
-            src="https://apexcharts.com/wp-content/uploads/2018/05/area-chart-spline.svg"
-            alt=""
-          />
+        <div class="flex h-full justify-center items-center w-full">
+          <TransationsChart />
         </div>
       </div>
     </template>
@@ -36,6 +32,7 @@ import BaseBackBtn from "@/components/ui/BaseBackBtn.vue";
 
 import PageLayout from "@/components/layout/PageLayout.vue";
 import TransactionCard from "@/components/TransactionCard.vue";
+import TransationsChart from "@/components/TransactionsChart.vue";
 
 import { useTransactionStore } from "@/stores/storeTransactions.js";
 

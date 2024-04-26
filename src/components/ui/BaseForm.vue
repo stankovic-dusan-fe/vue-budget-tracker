@@ -70,7 +70,7 @@
       <div class="flex flex-col gap-2">
         <button
           :disabled="isDisabled"
-          @click="$emit('send-transaction', transaction), resetForm()"
+          @click="$emit('send-transaction', transaction), resetTransactionForm()"
           :class="isDisabled ? 'cursor-not-allowed border-[#D1D1D1] bg-[#D1D1D1] text-white' : ''"
           class="text-sm text-white border-2 bg-[#1B1C1D] border-none rounded-xl p-4"
         >
@@ -97,10 +97,7 @@ const isDisabled = computed(() => {
   return transaction.amount <= 0 || transaction.category === "" || transaction.date === "" || transaction.notes === "";
 });
 
-function resetForm() {
-  this.transaction.amount = 0;
-  this.transaction.category = "";
-  this.transaction.date = "";
-  this.transaction.notes = "";
+function resetTransactionForm() {
+  Object.assign(transaction, { amount: 0, category: "", date: "", notes: "" });
 }
 </script>

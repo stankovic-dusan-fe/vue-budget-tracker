@@ -2,7 +2,7 @@
   <PageLayout>
     <template v-slot:header>
       <div class="bg-[#1B1C1D] p-8 rounded-b-xl">
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-6">
           <div class="w-full flex justify-start items-center gap-4">
             <img
               class="rounded-full w-[50px]"

@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
-import { collection, onSnapshot, setDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, onSnapshot, setDoc, doc, deleteDoc, query, orderBy, limit } from "firebase/firestore";
 
 import { db } from "@/firebase/index";
 import { useAuthStore } from "@/stores/storeAuth";
 
 let transactionsCollectionRef;
-let userBalancesDocRef;
+let transactionsCollectionQuery;
 
 export const useTransactionStore = defineStore("transactionStore", {
   state: () => {
@@ -20,11 +20,11 @@ export const useTransactionStore = defineStore("transactionStore", {
     init() {
       const storeAuth = useAuthStore();
       transactionsCollectionRef = collection(db, "users", storeAuth.user.id, "transactions");
-
+      transactionsCollectionQuery = query(transactionsCollectionRef, orderBy("date"));
       this.getTransactions();
     },
     async getTransactions() {
-      onSnapshot(transactionsCollectionRef, (querySnapshot) => {
+      onSnapshot(transactionsCollectionQuery, (querySnapshot) => {
         let transactions = [];
         let totalIncome = 0;
         let totalExpense = 0;
@@ -57,7 +57,6 @@ export const useTransactionStore = defineStore("transactionStore", {
     async addTransaction(transaction, type) {
       const storeAuth = useAuthStore();
       transactionsCollectionRef = collection(db, "users", storeAuth.user.id, "transactions");
-      userBalancesDocRef = doc(db, "users", storeAuth.user.id);
 
       await setDoc(doc(transactionsCollectionRef, self.crypto.randomUUID()), {
         type: type,
